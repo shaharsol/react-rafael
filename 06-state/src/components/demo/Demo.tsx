@@ -1,59 +1,34 @@
+import { useEffect, useRef, useState } from 'react'
 import './Demo.css'
-
 
 export default function Demo() {
 
-    let name: string = 'Eliad'
-    let age: number = 28
-    let isMale: boolean = true
+    // const startedAt = (new Date()).toLocaleTimeString()
+    const startedAt = useRef<string>((new Date()).toLocaleTimeString())
+    const [ now, setNow ] = useState<string>((new Date()).toLocaleTimeString())
 
-    const grades = [92, 96, 88]
+    useEffect(() => {
+        const intervalId = setInterval(() => {
+            console.log('in setInterval...')
+            setNow((new Date()).toLocaleTimeString())
+        }, 1000)
 
-    function getIsSmoking(username: string) {
-        if (name === username) return 'yes'
-        return 'no'
-    }
+        return () => {
+            clearInterval(intervalId)
+        }
+    }, [])
+    // 3 useEffect patterns depending on 2nd argument:
+    // ================================================
+    // 1. pass no argument - the effect will run with each re-render
+    // 2. pass an empty array - the effect will run ONLY on 1st render
+    // 3. pass a non empty array containing state vars - the effect will run
+    //      whenever a "watched" state var changes
 
-
-    function ShowSomeMarkeup() {
-
-        //...
-
-        // ...
-        return <p>here is markeup </p>
-    }
-
-    function clickHandler(event: React.MouseEvent<HTMLButtonElement>) {
-        event.currentTarget
-        alert('i was clicked')
-
-    }
 
     return (
         <div className='Demo'>
-            <p>name is {name}</p>
-            <p>age is {age}</p>
-
-            {/* ternary operator */}
-            <p>male? {isMale ? 'yes' : 'no'}</p>
-
-            {/* conditional rendering */}
-            {isMale && <p>he is a man</p>}
-
-            <p>isSmoling? {getIsSmoking('Roman')}</p>
-
-            {!isMale && <div>she is a woman</div>}
-
-            <ul>
-                <p>grades:</p>
-
-                {grades.map((g) => <li key={g}>{g}</li>)}
-            </ul>
-
-            <ShowSomeMarkeup />
-
-            <button onClick={clickHandler}>click me</button>
-
+            <h1>{startedAt.current}</h1>
+            <h1>{now}</h1>
         </div>
     )
 }
