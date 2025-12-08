@@ -1,11 +1,11 @@
-import Demo from '../demo/Demo'
+import Layout from '../layout/layout/Layout'
 import './App.css'
 
 function App() {
 
     return (
         <>
-            <Demo />
+            <Layout />
         </>
     )
 
