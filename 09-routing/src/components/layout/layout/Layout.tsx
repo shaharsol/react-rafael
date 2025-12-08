@@ -2,6 +2,7 @@ import Followers from '../../follows/followers/Followers'
 import Following from '../../follows/following/Following'
 import Footer from '../footer/Footer'
 import Header from '../header/Header'
+import Main from '../main/Main'
 import './Layout.css'
 
 export default function Layout() {
@@ -17,7 +18,7 @@ export default function Layout() {
                 <Followers />
             </aside>
             <main>
-                profie|feed...
+                <Main />
             </main>
             <footer>
                 <Footer />
