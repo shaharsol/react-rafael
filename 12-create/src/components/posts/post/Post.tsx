@@ -1,16 +1,19 @@
 import type PostModel from '../../../models/Post'
+import type PostComment from '../../../models/PostComment'
 import profileService from '../../../services/profile'
+import Comments from '../comments/Comments'
 import './Post.css'
 
 interface PostProps {
     post: PostModel
     readOnly: boolean
     removePost?(id: string): void
+    commentCreated(postComment: PostComment): void
 }
 export default function Post(props: PostProps) {
 
-    const { id, title, body, user: { name }, createdAt, imageUrl } = props.post
-    const { readOnly, removePost } = props 
+    const { id, title, body, user: { name }, createdAt, imageUrl, comments } = props.post
+    const { readOnly, removePost, commentCreated } = props 
 
     async function removeMe() {
         try {
@@ -37,6 +40,12 @@ export default function Post(props: PostProps) {
                     <button onClick={removeMe}>delete</button>
                 </div>
             }
+
+            <Comments 
+                comments={comments}
+                postId={id}
+                commentCreated={commentCreated}
+            />
             
         </div>
     )
