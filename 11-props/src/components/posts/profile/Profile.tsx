@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react'
 import './Profile.css'
-import type Post from '../../../models/Post'
+import type PostModel from '../../../models/Post'
 import profileService from '../../../services/profile'
+import Post from '../post/Post'
 
 export default function Profile() {
 
-    const [ posts, setPosts] = useState<Post[]>([])
+    const [ posts, setPosts] = useState<PostModel[]>([])
 
     useEffect(() => {
 
@@ -22,7 +23,7 @@ export default function Profile() {
     return (
         <div className='Profile'>
             <ul>
-                {posts.map(({id, title}) => <li key={id}>{title}</li>)}
+                {posts.map(p => <Post key={p.id} post={p} />)}
             </ul>
         </div>
     )
