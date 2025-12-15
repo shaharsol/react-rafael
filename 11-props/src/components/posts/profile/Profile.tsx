@@ -20,10 +20,20 @@ export default function Profile() {
             .catch(e => alert(e.message))
     }, [])
 
+
+    function removePost(id: string): void {
+        setPosts(posts.filter(p => p.id !== id))
+    }
+
     return (
         <div className='Profile'>
             <ul>
-                {posts.map(p => <Post key={p.id} post={p} />)}
+                {posts.map(p => <Post 
+                    key={p.id} 
+                    post={p} 
+                    readOnly={false}
+                    removePost={removePost}
+                />)}
             </ul>
         </div>
     )

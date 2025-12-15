@@ -23,7 +23,11 @@ export default function Feed() {
     return (
         <div className='Feed'>
              <ul>
-                {posts.map(p => <Post key={p.id} post={p} />)}
+                {posts.map(p => <Post 
+                    key={p.id} 
+                    post={p} 
+                    readOnly={true}
+                />)}
             </ul>
         </div>
     )
