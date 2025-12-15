@@ -26,9 +26,13 @@ export default function Profile() {
         setPosts(posts.filter(p => p.id !== id))
     }
 
+    function addPost(newPost: PostModel) {
+        setPosts([newPost, ...posts])
+    }
+
     return (
         <div className='Profile'>
-            <NewPost />
+            <NewPost postCreated={addPost} />
             {posts.map(p => <Post 
                 key={p.id} 
                 post={p} 
