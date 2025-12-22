@@ -1,0 +1,13 @@
+.NewPost form{
+    display: flex;
+    flex-direction: column;
+}
+
+.NewPost .error {
+    color: red;
+}
+
+
+.NewPost img {
+    height: 32px;
+}
