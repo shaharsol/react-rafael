@@ -1,0 +1,10 @@
+.Followers {
+    display: flex;
+    flex-direction: column;
+}
+
+.Followers .list {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+}

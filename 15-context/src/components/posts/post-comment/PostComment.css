@@ -1,0 +1,10 @@
+.PostComment {
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed lightgreen;
+    padding: 4px;
+}
+
+.PostComment .by-line {
+    font-size: 12px;
+}
