@@ -1,13 +1,17 @@
 import { useEffect, useState } from 'react'
 import './Feed.css'
 import type PostModel from '../../../models/Post'
-import feedService from '../../../services/feed'
+// import feedService from '../../../services/feed'
 import Post from '../post/Post'
 import Spinner from '../../common/spinner/Spinner'
+import useService from '../../../hooks/use-service'
+import FeedService from '../../../services/auth-aware/FeedService'
 
 export default function Feed() {
 
     let [ posts, setPosts] = useState<PostModel[]>([])
+
+    const feedService = useService(FeedService)
 
     useEffect(() => {
 

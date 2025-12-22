@@ -1,15 +1,20 @@
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import './Profile.css'
 import type PostModel from '../../../models/Post'
-import profileService from '../../../services/profile'
+// import profileService from '../../../services/profile'
 import Post from '../post/Post'
 import NewPost from '../new/NewPost'
 import type PostComment from '../../../models/PostComment'
 import Spinner from '../../common/spinner/Spinner'
+import AuthContext from '../../auth/auth/AuthContext'
+import useService from '../../../hooks/use-service'
+import ProfileService from '../../../services/auth-aware/ProfileService'
 
 export default function Profile() {
 
     const [ posts, setPosts] = useState<PostModel[]>([])
+
+    const profileService = useService(ProfileService)
 
     useEffect(() => {
 
