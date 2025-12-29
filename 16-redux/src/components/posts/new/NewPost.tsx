@@ -1,11 +1,13 @@
 import { useForm } from 'react-hook-form'
 import type PostDraft from '../../../models/PostDraft'
-import profileService from '../../../services/profile'
+// import profileService from '../../../services/profile'
 import './NewPost.css'
 import { useState } from 'react'
 import SpinnerButton from '../../common/spinner-button/SpinnerButton'
 import { useAppDispatch } from '../../../redux/hooks'
 import { add } from '../../../redux/profile-slice'
+import useService from '../../../hooks/use-service'
+import ProfileService from '../../../services/auth-aware/ProfileService'
 
 export default function NewPost() {
     const dispatch = useAppDispatch()
@@ -13,6 +15,7 @@ export default function NewPost() {
 
     const [ isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
+    const profileService = useService(ProfileService)
     async function createPost(draft: PostDraft) {
         try {
             setIsSubmitting(true)
