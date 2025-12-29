@@ -2,16 +2,13 @@ import { useForm } from 'react-hook-form'
 import type PostDraft from '../../../models/PostDraft'
 import profileService from '../../../services/profile'
 import './NewPost.css'
-import type Post from '../../../models/Post'
 import { useState } from 'react'
 import SpinnerButton from '../../common/spinner-button/SpinnerButton'
+import { useAppDispatch } from '../../../redux/hooks'
+import { add } from '../../../redux/profile-slice'
 
-interface NewPostProps {
-    postCreated(post: Post): void
-}
-export default function NewPost(props: NewPostProps) {
-
-    const { postCreated } = props
+export default function NewPost() {
+    const dispatch = useAppDispatch()
     const { handleSubmit, register, formState, reset } = useForm<PostDraft>()
 
     const [ isSubmitting, setIsSubmitting] = useState<boolean>(false)
@@ -21,7 +18,8 @@ export default function NewPost(props: NewPostProps) {
             setIsSubmitting(true)
             const newPost = await profileService.createPost(draft)
             reset()
-            postCreated(newPost)
+            // postCreated(newPost)
+            dispatch(add(newPost))
         } catch (e) {
             alert(e)
         } finally {
