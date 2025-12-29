@@ -1,10 +1,11 @@
-import { useState } from 'react'
+import { memo, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
 const items = Array.from({length: 10})
 
+const CachedSlowComponent = memo(SlowComponent)
 
 function App() {
 
@@ -17,7 +18,7 @@ function App() {
     <div className='App'>
         <p>current toggle: {toggle? 'on' : 'off'}</p>
         <button onClick={changeState}>toggle</button>
-        {items.map((item, idx) => <SlowComponent key={idx}/>)}
+        {items.map((item, idx) => <CachedSlowComponent key={idx}/>)}
     </div>
   )
 }

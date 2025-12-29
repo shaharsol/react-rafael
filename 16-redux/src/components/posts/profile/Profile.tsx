@@ -40,6 +40,7 @@ export default function Profile() {
                 {posts.map(p => <Post 
                     key={p.id} 
                     post={p} 
+                    // postId={p.id}
                     readOnly={false}
                 />)}
             </>}
