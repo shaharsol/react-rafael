@@ -1,0 +1,9 @@
+.Post {
+    display: flex;
+    flex-direction: column;
+    border: 1px dashed lightblue;
+}
+
+.Post img {
+    width: 96px;
+}
